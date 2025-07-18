@@ -4,7 +4,6 @@ import com.calangobets.calangobets.entity.User;
 import com.calangobets.calangobets.exception.EntityNotFoundException;
 import com.calangobets.calangobets.repository.UserRepository;
 import com.calangobets.calangobets.web.dto.UserUpdateDto;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
