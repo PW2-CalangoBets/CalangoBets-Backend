@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: calangobets
+  data:
+    mongodb:
+      uri: ${SPRING_DATA_MONGODB_URI:mongodb://root:example@localhost:27017/appdb?authSource=admin}
+  jpa:
+    enabled: false
+
+  main:
+    allow-bean-definition-overriding: true
