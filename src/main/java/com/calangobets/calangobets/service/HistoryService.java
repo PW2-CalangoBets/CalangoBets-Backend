@@ -23,7 +23,7 @@ public class HistoryService {
     }
 
     public Page<History> getAll (Pageable pageable, String userId) {
-        return historyRepository.findAllByUserid(userId, pageable);
+        return historyRepository.findAllByUserId(userId, pageable);
     }
 
     public History findById(String userId, String historyId) {
