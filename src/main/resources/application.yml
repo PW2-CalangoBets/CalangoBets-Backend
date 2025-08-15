@@ -3,7 +3,7 @@ spring:
     name: calangobets
   data:
     mongodb:
-      uri: ${SPRING_DATA_MONGODB_URI:mongodb://root:example@localhost:27017/appdb?authSource=admin}
+      uri: ${DB_URL}
   jpa:
     enabled: false
 

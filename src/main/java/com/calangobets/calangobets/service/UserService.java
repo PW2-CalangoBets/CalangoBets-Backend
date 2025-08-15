@@ -17,7 +17,7 @@ public class UserService {
 
     @Transactional(readOnly = true)
     public User getById(String id) {
-        return repository.findById(id).orElseThrow(EntityNotFoundException::new);
+        return repository.findById(id).orElseThrow(() -> new EntityNotFoundException("eita"));
     }
 
     public User create(User user) {
