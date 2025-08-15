@@ -18,8 +18,8 @@ public class HistoryService {
         return historyRepository.save(history);
     }
 
-    public Page<History> getAll (Pageable pageable) {
-        return historyRepository.findAll(pageable);
+    public Page<History> getAll (Pageable pageable, String userId) {
+        return historyRepository.findAllByUserid(userId, pageable);
     }
 
     public History findById(String id) {
