@@ -10,6 +10,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
@@ -18,21 +19,15 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
     private final UserService service;
 
-    @GetMapping("/{id}")
-    public ResponseEntity<UserResponseDto> getById(@PathVariable String id) {
-        User user = service.getById(id);
-        return ResponseEntity.ok().body(UserMapper.toDto(user));
+    @GetMapping()
+    public ResponseEntity<UserResponseDto> getById(@AuthenticationPrincipal User user) {
+        User info = service.getById(user.getId());
+        return ResponseEntity.ok().body(UserMapper.toDto(info));
     }
 
-    @PostMapping
-    public ResponseEntity<UserResponseDto> create(@Valid @RequestBody UserCreateDto createDto) {
-        User user = service.create(UserMapper.toUser(createDto));
-        return ResponseEntity.status(201).body(UserMapper.toDto(user));
-    }
-
-    @PatchMapping("/{id}")
-    public ResponseEntity<Void> update(@Valid @RequestBody UserUpdateDto updateDto, @PathVariable String id) {
-        service.update(id, updateDto);
+    @PatchMapping()
+    public ResponseEntity<Void> update(@Valid @RequestBody UserUpdateDto updateDto, @AuthenticationPrincipal User user) {
+        service.update(user.getId(), updateDto);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
