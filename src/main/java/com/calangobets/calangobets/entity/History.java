@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 @Document
 public class History implements Serializable {
     @Id
-    private Long id;
+    private String id;
     private Operation operation;
     private BigDecimal value;
     private String userId;

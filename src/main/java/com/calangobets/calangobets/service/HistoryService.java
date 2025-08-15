@@ -15,7 +15,7 @@ import java.util.Objects;
 @Service
 @RequiredArgsConstructor
 public class HistoryService {
-    private HistoryRepository historyRepository;
+    private final HistoryRepository historyRepository;
 
     public History saveHistory(String userId, History history) {
         history.setUserId(userId);

@@ -14,7 +14,7 @@ import java.math.BigDecimal;
 
 @Getter @Setter @AllArgsConstructor @NoArgsConstructor
 public class HistoryCreateDto {
-    @NotBlank
+    @NotNull
     private Operation operation;
     @NumberFormat @NotNull
     private BigDecimal value;

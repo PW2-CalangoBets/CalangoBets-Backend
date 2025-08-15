@@ -4,7 +4,9 @@ import com.calangobets.calangobets.entity.History;
 import com.calangobets.calangobets.entity.User;
 import com.calangobets.calangobets.service.HistoryService;
 import com.calangobets.calangobets.web.dto.HistoryCreateDto;
+import com.calangobets.calangobets.web.dto.PageableDto;
 import com.calangobets.calangobets.web.dto.mapper.HistoryMapper;
+import com.calangobets.calangobets.web.dto.mapper.PageableMapper;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.apache.coyote.Response;
@@ -24,13 +26,13 @@ public class HistoryController {
     @PostMapping
     public ResponseEntity<History> createHistory (@AuthenticationPrincipal User user, @Valid @RequestBody HistoryCreateDto createDto) {
         History history = historyService.saveHistory(user.getId(), HistoryMapper.toHistory(createDto));
-        return ResponseEntity.status(202).body(history);
+        return ResponseEntity.status(201).body(history);
     }
 
     @GetMapping
-    public ResponseEntity<Page<History>> getAllHistory (@AuthenticationPrincipal User user, Pageable pageable) {
+    public ResponseEntity<PageableDto> getAllHistory (@AuthenticationPrincipal User user, Pageable pageable) {
         Page<History> page = historyService.getAll(pageable, user.getId());
-        return ResponseEntity.ok(page);
+        return ResponseEntity.ok(PageableMapper.toDto(page));
     }
 
     @GetMapping("/{id}")

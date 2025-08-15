@@ -44,6 +44,6 @@ public class AuthController {
         registerDto.setPassword(encryptPassword);
         userRepository.save(UserMapper.toUser(registerDto));
 
-        return ResponseEntity.ok().build();
+        return ResponseEntity.status(201).build();
     }
 }
