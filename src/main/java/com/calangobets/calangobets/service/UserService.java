@@ -15,7 +15,6 @@ import java.math.BigDecimal;
 public class UserService {
     private final UserRepository repository;
 
-    @Transactional(readOnly = true)
     public User getById(String id) {
         return repository.findById(id).orElseThrow(() -> new EntityNotFoundException("eita"));
     }
