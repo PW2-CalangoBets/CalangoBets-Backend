@@ -2,6 +2,7 @@ package com.calangobets.calangobets.web.exception;
 
 import com.calangobets.calangobets.exception.AuthorizationErrorException;
 import com.calangobets.calangobets.exception.EntityNotFoundException;
+import com.calangobets.calangobets.exception.NotEnoughCdbException;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -19,6 +20,14 @@ import org.springframework.web.servlet.resource.NoResourceFoundException;
 @Slf4j
 @RestControllerAdvice
 public class ApiExceptionHandler {
+
+    @ExceptionHandler(NotEnoughCdbException.class)
+    public ResponseEntity<ErrorMessage> notEnoughCdbException(NotEnoughCdbException ex,
+                                                                    HttpServletRequest request) {
+        return ResponseEntity.status(HttpStatus.CONFLICT)
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(new ErrorMessage(request, HttpStatus.BAD_REQUEST, ex.getMessage()));
+    }
 
     @ExceptionHandler(AuthorizationErrorException.class)
     public ResponseEntity<ErrorMessage> authorizationErrorException(AuthorizationErrorException ex,

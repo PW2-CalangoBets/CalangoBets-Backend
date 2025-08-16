@@ -18,5 +18,6 @@ public class History implements Serializable {
     private String id;
     private Operation operation;
     private BigDecimal value;
+    private BigDecimal accountCdb;
     private String userId;
 }

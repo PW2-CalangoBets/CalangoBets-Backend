@@ -1,6 +1,7 @@
 package com.calangobets.calangobets.service;
 
 import com.calangobets.calangobets.entity.History;
+import com.calangobets.calangobets.entity.User;
 import com.calangobets.calangobets.exception.AuthorizationErrorException;
 import com.calangobets.calangobets.exception.EntityNotFoundException;
 import com.calangobets.calangobets.repository.HistoryRepository;
@@ -16,9 +17,12 @@ import java.util.Objects;
 @RequiredArgsConstructor
 public class HistoryService {
     private final HistoryRepository historyRepository;
+    private final UserService userService;
 
-    public History saveHistory(String userId, History history) {
-        history.setUserId(userId);
+    public History saveHistory(User user, History history) {
+        history.setUserId(user.getId());
+        history.setAccountCdb(user.getCdb());
+        userService.updateCdb(user, history.getValue(), history.getOperation());
         return historyRepository.save(history);
     }
 

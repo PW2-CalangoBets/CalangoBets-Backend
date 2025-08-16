@@ -1,7 +1,9 @@
 package com.calangobets.calangobets.service;
 
+import com.calangobets.calangobets.entity.Operation;
 import com.calangobets.calangobets.entity.User;
 import com.calangobets.calangobets.exception.EntityNotFoundException;
+import com.calangobets.calangobets.exception.NotEnoughCdbException;
 import com.calangobets.calangobets.repository.UserRepository;
 import com.calangobets.calangobets.web.dto.UserUpdateDto;
 import lombok.RequiredArgsConstructor;
@@ -27,6 +29,17 @@ public class UserService {
     public void update(String id, UserUpdateDto updateDto) {
         User user = getById(id);
         update(user, updateDto);
+        repository.save(user);
+    }
+
+    public void updateCdb (User user, BigDecimal amount, Operation operation) {
+        if(operation == Operation.DEPOSIT) {
+            user.setCdb(user.getCdb().add(amount));
+        } else {
+            if(user.getCdb().subtract(amount).compareTo(BigDecimal.ZERO) >= 0)
+                user.setCdb(user.getCdb().subtract(amount));
+            else throw new NotEnoughCdbException("Not enough cash buddy!");
+        }
         repository.save(user);
     }
 

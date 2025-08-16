@@ -9,7 +9,6 @@ import com.calangobets.calangobets.web.dto.mapper.HistoryMapper;
 import com.calangobets.calangobets.web.dto.mapper.PageableMapper;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.apache.coyote.Response;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +24,7 @@ public class HistoryController {
 
     @PostMapping
     public ResponseEntity<History> createHistory (@AuthenticationPrincipal User user, @Valid @RequestBody HistoryCreateDto createDto) {
-        History history = historyService.saveHistory(user.getId(), HistoryMapper.toHistory(createDto));
+        History history = historyService.saveHistory(user, HistoryMapper.toHistory(createDto));
         return ResponseEntity.status(201).body(history);
     }
 
