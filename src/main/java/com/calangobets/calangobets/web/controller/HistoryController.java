@@ -7,6 +7,7 @@ import com.calangobets.calangobets.web.dto.HistoryCreateDto;
 import com.calangobets.calangobets.web.dto.PageableDto;
 import com.calangobets.calangobets.web.dto.mapper.HistoryMapper;
 import com.calangobets.calangobets.web.dto.mapper.PageableMapper;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
+@Tag(name = "Transaction History", description = "Manages the transaction methods, updating user cdb's after transactions")
 @RequestMapping("api/history")
 public class HistoryController {
 

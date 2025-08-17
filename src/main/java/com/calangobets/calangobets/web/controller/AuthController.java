@@ -7,6 +7,7 @@ import com.calangobets.calangobets.web.dto.mapper.UserMapper;
 import com.calangobets.calangobets.web.dto.user.AuthDto;
 import com.calangobets.calangobets.web.dto.user.LoginResponseDto;
 import com.calangobets.calangobets.web.dto.user.RegisterDto;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +24,7 @@ import java.math.BigDecimal;
 
 @RestController
 @RequiredArgsConstructor
+@Tag(name = "Auth", description = "Auth methods")
 @RequestMapping("api/auth")
 public class AuthController {
     private final TokenService tokenService;

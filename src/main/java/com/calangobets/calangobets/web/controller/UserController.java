@@ -6,6 +6,7 @@ import com.calangobets.calangobets.web.dto.UserCreateDto;
 import com.calangobets.calangobets.web.dto.UserResponseDto;
 import com.calangobets.calangobets.web.dto.UserUpdateDto;
 import com.calangobets.calangobets.web.dto.mapper.UserMapper;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
 @RestController
+@Tag(name = "User Methods", description = "get by id and update user methods")
 @RequestMapping("api/users")
 public class UserController {
     private final UserService service;

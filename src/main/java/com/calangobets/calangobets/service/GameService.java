@@ -20,10 +20,12 @@ import java.util.Objects;
 @RequiredArgsConstructor
 public class GameService {
     private final GameRepository gameRepository;
+    private final UserService userService;
 
     public GameHistory processGame (User user, GameHistory gameHistory) {
         if (user.getCdb().equals(BigDecimal.ZERO)) throw new NotEnoughCdbException("Not enough cash to play buddy!");
         gameHistory.setPlayerId(user.getId());
+        userService.handleGameResult(user, gameHistory.getCdb(), gameHistory.getResult());
         return gameRepository.save(gameHistory);
     }
 

@@ -10,6 +10,7 @@ import com.calangobets.calangobets.web.dto.GameDto;
 import com.calangobets.calangobets.web.dto.PageableDto;
 import com.calangobets.calangobets.web.dto.mapper.GameMapper;
 import com.calangobets.calangobets.web.dto.mapper.PageableMapper;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
+@Tag(name = "Game Application", description = "Crud methods for games, creates a game history and updates user cdb")
 @RequestMapping("api/game")
 public class GameController {
     private final GameService gameService;
