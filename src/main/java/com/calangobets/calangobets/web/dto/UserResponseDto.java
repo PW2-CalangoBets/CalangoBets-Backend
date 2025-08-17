@@ -9,4 +9,7 @@ public class UserResponseDto {
     private String name;
     private String email;
     private BigDecimal cdb;
+    private BigDecimal totalDeposit;
+    private BigDecimal wins;
+    private BigDecimal looses;
 }

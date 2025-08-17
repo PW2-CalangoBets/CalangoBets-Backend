@@ -46,6 +46,9 @@ public class AuthController {
         registerDto.setPassword(encryptPassword);
         User newUser = UserMapper.toUser(registerDto);
         newUser.setCdb(BigDecimal.ZERO);
+        newUser.setWins(BigDecimal.ZERO);
+        newUser.setLooses(BigDecimal.ZERO);
+        newUser.setTotalDeposit(BigDecimal.ZERO);
         userRepository.save(newUser);
 
         return ResponseEntity.status(201).build();

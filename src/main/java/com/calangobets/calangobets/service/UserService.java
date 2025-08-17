@@ -1,6 +1,7 @@
 package com.calangobets.calangobets.service;
 
 import com.calangobets.calangobets.entity.Operation;
+import com.calangobets.calangobets.entity.Result;
 import com.calangobets.calangobets.entity.User;
 import com.calangobets.calangobets.exception.EntityNotFoundException;
 import com.calangobets.calangobets.exception.NotEnoughCdbException;
@@ -35,10 +36,26 @@ public class UserService {
     public void updateCdb (User user, BigDecimal amount, Operation operation) {
         if(operation == Operation.DEPOSIT) {
             user.setCdb(user.getCdb().add(amount));
+            user.setTotalDeposit(user.getTotalDeposit().add(amount));
         } else {
-            if(user.getCdb().subtract(amount).compareTo(BigDecimal.ZERO) >= 0)
+            if(user.getCdb().subtract(amount).compareTo(BigDecimal.ZERO) >= 0) {
                 user.setCdb(user.getCdb().subtract(amount));
+            }
             else throw new NotEnoughCdbException("Not enough cash buddy!");
+        }
+        repository.save(user);
+    }
+
+    public void handleGameResult(User user, BigDecimal amount, Result result) {
+        if(result == Result.WIN) {
+            user.setCdb(user.getCdb().add(amount));
+            user.setWins(user.getWins().add(amount));
+        } else {
+            if(user.getCdb().subtract(amount).compareTo(BigDecimal.ZERO) >= 0) {
+                user.setCdb(user.getCdb().subtract(amount));
+                user.setLooses(user.getLooses().add(amount));
+            }
+            else throw new NotEnoughCdbException("How are you gonna play without money?");
         }
         repository.save(user);
     }

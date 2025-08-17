@@ -24,6 +24,9 @@ public class User implements UserDetails {
     private String name;
     private String email;
     private BigDecimal cdb;
+    private BigDecimal totalDeposit;
+    private BigDecimal wins;
+    private BigDecimal looses;
     private String password;
     private Role role = Role.USER;
 
