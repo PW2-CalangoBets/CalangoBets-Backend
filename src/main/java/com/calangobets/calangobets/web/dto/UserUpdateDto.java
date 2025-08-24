@@ -11,8 +11,4 @@ import java.math.BigDecimal;
 public class UserUpdateDto {
     @NotBlank
     private String name;
-    @NotNull
-    private BigDecimal cdb;
-    @NotBlank @Size(min = 6)
-    private String password;
 }

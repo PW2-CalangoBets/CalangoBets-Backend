@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequiredArgsConstructor
 @Tag(name = "Transaction History", description = "Manages the transaction methods, updating user cdb's after transactions")
-@RequestMapping("api/history")
+@RequestMapping("api/transaction")
 public class HistoryController {
 
     private final HistoryService historyService;

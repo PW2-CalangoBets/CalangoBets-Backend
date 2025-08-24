@@ -61,8 +61,6 @@ public class UserService {
     }
 
     private void update(User user, UserUpdateDto updateDto) {
-        if(updateDto.getCdb() != null) user.setCdb(updateDto.getCdb());
         if(updateDto.getName() != null) user.setName(updateDto.getName());
-        if(updateDto.getPassword() != null) user.setPassword(updateDto.getPassword());
     }
 }
