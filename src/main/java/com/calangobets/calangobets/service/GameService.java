@@ -14,6 +14,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Service
@@ -24,6 +25,8 @@ public class GameService {
 
     public GameHistory processGame (User user, GameHistory gameHistory) {
         if (user.getCdb().equals(BigDecimal.ZERO)) throw new NotEnoughCdbException("Not enough cash to play buddy!");
+        gameHistory.setAccountCdb(user.getCdb());
+        gameHistory.setDate(LocalDateTime.now());
         gameHistory.setPlayerId(user.getId());
         userService.handleGameResult(user, gameHistory.getCdb(), gameHistory.getResult());
         return gameRepository.save(gameHistory);

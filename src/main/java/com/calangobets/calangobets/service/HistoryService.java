@@ -11,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Service
@@ -20,6 +21,7 @@ public class HistoryService {
     private final UserService userService;
 
     public History saveHistory(User user, History history) {
+        history.setDate(LocalDateTime.now());
         history.setUserId(user.getId());
         history.setAccountCdb(user.getCdb());
         userService.updateCdb(user, history.getValue(), history.getOperation());

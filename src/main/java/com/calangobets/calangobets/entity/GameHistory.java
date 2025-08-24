@@ -8,6 +8,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -19,6 +20,8 @@ public class GameHistory {
     private String id;
     private String playerId;
     private String gameName;
+    private LocalDateTime date;
+    private BigDecimal accountCdb;
     private BigDecimal cdb;
     private Result result;
 }
